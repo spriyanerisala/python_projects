@@ -11,13 +11,13 @@ print("=" * 45)
 print("        STUDENT PERFORMANCE ANALYZER")
 print("=" * 45)
 
-print("\n✅ Data Loaded Successfully!")
+print("\nData Loaded Successfully!")
 print(df)
 print("\nShape:", df.shape)
 
 subject_avg = df[["Math", "Science", "English"]].mean()
 
-print("\n📊 Subject Averages:")
+print("\nSubject Averages:")
 print(subject_avg)
 
 df["Total"]   = df["Math"] + df["Science"] + df["English"]
