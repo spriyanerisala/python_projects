@@ -31,7 +31,7 @@ def get_grade(avg):
 
 df["Grade"] = df["Average"].apply(get_grade)
 
-print("\n📋 Updated Table with Total, Average & Grade:")
+print("\nUpdated Table with Total, Average & Grade:")
 print(df[["Name", "Math", "Science", "English", "Total", "Average", "Grade"]])
 
 averages = df["Average"].values
