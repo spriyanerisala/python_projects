@@ -4,16 +4,13 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix
-import os
-
-os.makedirs("results", exist_ok=True)
 
 df = pd.read_csv("students.csv")
 print("--- Dataset ---")
 print(df.head())
 
 df['average_score'] = df[['Math', 'Science', 'English']].mean(axis=1)
-df['pass_fail'] = (df['average_score'] >= 70).astype(int) # Pass if average score is 70 or above
+df['pass_fail'] = (df['average_score'] >= 70).astype(int) 
 
 x = df[["average_score", "Attendance"]]
 y = df["pass_fail"]
