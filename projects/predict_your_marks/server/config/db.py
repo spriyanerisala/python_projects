@@ -11,16 +11,17 @@ def get_connection():
         password=os.getenv("DB_PASSWORD"),
         database=os.getenv("DB_NAME"),
         port=int(os.getenv("DB_PORT", 3306)),
-        ssl_ca=False,
-        ssl_verify_cert=False,
-        ssl_verify_identity=False
+        ssl_disabled=True
     )
 
 def check_connection():
     try:
         conn = get_connection()
         if conn.is_connected():
-            print("Connected to MYSQL Database ")
+            print("Connected to MySQL Database")
             conn.close()
     except Exception as e:
-        print("MYSQL connection error :", str(e))
+        print("MySQL connection error:", str(e))
+
+if __name__ == "__main__":
+    check_connection()
