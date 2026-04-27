@@ -3,10 +3,14 @@ from flask_cors import CORS
 from routes.predict import predict_bp
 from routes.student import student_bp
 from config.db import check_connection
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
 app = Flask(__name__)
 check_connection()
 
-CORS(app)
+CORS(app, origins=[os.getenv("FRONTEND_URL")])
 
 app.register_blueprint(predict_bp)
 app.register_blueprint(student_bp)
