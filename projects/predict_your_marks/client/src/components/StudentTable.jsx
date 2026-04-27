@@ -18,10 +18,19 @@ export default function StudentTable() {
     }
   };
 
+  const handleDelete = async (id) => {
+    try {
+      await API.delete(`/students/${id}`);
+      fetchData(); // ✅ table refresh
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="max-w-4xl mx-auto mt-10 p-4">
       <h2 className="text-2xl font-bold text-center mb-4 text-blue-600">
-        Students Data 
+        Students Data
       </h2>
 
       <div className="overflow-x-auto">
@@ -32,6 +41,7 @@ export default function StudentTable() {
               <th className="p-3">Hours</th>
               <th className="p-3">Attendance</th>
               <th className="p-3">Predicted Marks</th>
+              <th className="p-3">Action</th>
             </tr>
           </thead>
 
@@ -39,13 +49,21 @@ export default function StudentTable() {
             {students.map((s, i) => (
               <tr
                 key={i}
-                className="text-center border-b cursor-pointer hover:bg-gray-100 transition"
+                className="text-center border-b hover:bg-gray-100 transition"
               >
                 <td className="p-3">{s.name}</td>
                 <td className="p-3">{s.hours_studied}</td>
                 <td className="p-3">{s.attendance}</td>
                 <td className="p-3 font-semibold text-green-600">
                   {s.predicted_marks}
+                </td>
+                <td className="p-3">
+                  <button
+                    onClick={() => handleDelete(s.id)}
+                    className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}

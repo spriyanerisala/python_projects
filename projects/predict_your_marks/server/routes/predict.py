@@ -1,12 +1,14 @@
 from flask import Blueprint, request, jsonify
 import pickle
 import numpy as np
+import os
 from config.db import get_connection
 
 predict_bp = Blueprint('predict', __name__)
 
 # Load model
-model = pickle.load(open("model/model.pkl", "rb"))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+model = pickle.load(open(os.path.join(BASE_DIR, "../model/model.pkl"), "rb"))
 
 @predict_bp.route('/predict', methods=['POST'])
 def predict():

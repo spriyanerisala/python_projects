@@ -17,7 +17,8 @@ export default function StudentForm({ setResult }) {
     try {
       const res = await API.post("/predict", form);
       setResult(res.data);
-      alert("Prediction Done ");
+      alert("Prediction Done ✅");
+      setForm({ name: "", hours: "", attendance: "" }); // ✅ form clear
     } catch (err) {
       console.log(err);
     }
@@ -32,6 +33,7 @@ export default function StudentForm({ setResult }) {
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           name="name"
+          value={form.name}
           placeholder="Name"
           onChange={handleChange}
           className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -39,6 +41,7 @@ export default function StudentForm({ setResult }) {
 
         <input
           name="hours"
+          value={form.hours}
           placeholder="Hours Studied"
           onChange={handleChange}
           className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -46,6 +49,7 @@ export default function StudentForm({ setResult }) {
 
         <input
           name="attendance"
+          value={form.attendance}
           placeholder="Attendance"
           onChange={handleChange}
           className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
