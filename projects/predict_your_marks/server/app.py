@@ -11,10 +11,8 @@ load_dotenv()
 app = Flask(__name__)
 check_connection()
 
-frontend_url = os.getenv("FRONTEND_URL", "https://python-projects-e6vh.vercel.app")
-print(f"Allowing CORS for: {frontend_url}")  # helpful for debugging in Render logs
 
-CORS(app, origins=[frontend_url])
+CORS(app, origins="*")
 
 app.register_blueprint(predict_bp)
 app.register_blueprint(student_bp)
